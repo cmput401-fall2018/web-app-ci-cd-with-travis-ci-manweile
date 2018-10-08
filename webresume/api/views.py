@@ -7,3 +7,4 @@ class PersonView(viewsets.ModelViewSet):
     queryset = Person.objects.all()
     serializer_class = PersonSerializer
     allowed_methods = ['GET']
+    #allowed_methods = ['GET', 'POST', 'PUT', 'DELETE']
