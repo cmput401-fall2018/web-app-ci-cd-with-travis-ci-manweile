@@ -1,3 +1,4 @@
+sudo: required
 language: python
 python:
   - "3.5"
@@ -5,7 +6,24 @@ python:
 # command to install dependencies
 install:
   - pip install -r requirements.txt
- 
+
+# chrome source
+addons:
+  apt:
+    sources:
+    - google-chrome
+    packages:
+    - google-chrome-stable
+
+# install browser and driver
+before_script:
+  - gem install chrome
+  - sudo chmod u+x chromedriver
+  - sudo mv chromedriver /usr/bin
+  - export CHROME_BIN=chrome-browser
+  - sh -e /etc/init.d/xvfb start
+  - sleep 5
+
 # command to run tests
 script:
   pytest
